@@ -10,7 +10,7 @@ export const login =async(req,res,next)=>{
    const user= await User.findOne({email}).select("+password");
    if(!user){  return res.status(500).json({
     success: false,
-    message: "invalid email and password",
+    message: "invalid  password",
   });
 }
    const match=await bcrypt.compare(password,user.password);
@@ -65,6 +65,8 @@ export const getMyProfile = (req, res) => {
         expires:new Date(Date.now())
     })
     .json({
+
+
         success:true,
         user:req.user
     })
